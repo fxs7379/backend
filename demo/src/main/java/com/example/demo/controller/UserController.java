@@ -26,8 +26,18 @@ public class UserController {
     }
 
     @GetMapping("/findAllStaff")
-    public List<User> findAllStaff() {
-        return userService.findAllStaff();
+    public List<User> findAllStaff(@RequestParam Map<String, String> map) {
+        int count = Integer.parseInt(map.get("count"));
+        int page = Integer.parseInt(map.get("page"));
+        List<User> userList = userService.findAllStaff();
+        int start = (page - 1) * count;
+        int end = page * count > userList.size() ? userList.size() : page * count;
+        return userList.subList(start, end);
+    }
+
+    @GetMapping("/getStaffCount")
+    public int getStaffCount() {
+        return userService.findAllStaff().size();
     }
 
     @PostMapping("/modUser")
