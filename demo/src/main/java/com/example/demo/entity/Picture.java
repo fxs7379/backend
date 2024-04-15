@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tag {
+public class Picture {
+    int pictureid;
+    String picture_path;
     int tagid;
-    String tagname;
-    int userid;
-    String region;
 }

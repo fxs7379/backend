@@ -18,6 +18,8 @@ public class TagController {
     @PostMapping("/addTag")
     public Tag addTag(@RequestParam Map<String, String> map) {
         String tagname = map.get("tagname");
-        return tagService.addTag(tagname);
+        int userid = Integer.parseInt(map.get("userid"));
+        String region = map.get("region");
+        return tagService.addTag(tagname, userid, region);
     }
 }

@@ -11,12 +11,12 @@ public class TagService {
     @Autowired
     TagMapper tagMapper;
 
-    public Tag addTag(String tagname) {
+    public Tag addTag(String tagname, int userid, String region) {
         Tag oldTag = tagMapper.getTagByName(tagname);
-        if(oldTag != null) {
+        if (oldTag != null) {
             return null;
         }
-        Tag tag = new Tag(0, tagname);
+        Tag tag = new Tag(0, tagname, userid, region);
         tagMapper.addTag(tag);
         int tagid = tagMapper.getLastInsert();
         tag.setTagid(tagid);
