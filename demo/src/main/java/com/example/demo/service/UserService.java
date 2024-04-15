@@ -34,4 +34,20 @@ public class UserService {
     public List<User> findAllStaff() {
         return userMapper.findAllStaff();
     }
+
+    public User addUser(int userid, String username, String password, String phone_number, String region, int onjob,
+            int type) {
+        User user = new User(0, username, password, phone_number, region, onjob, type);
+        User oldUser = userMapper.findUserByName(username);
+        if (oldUser != null) {
+            return null;
+        }
+        userMapper.addUser(user);
+        user.setUserid(userMapper.getLastInsert());
+        return user;
+    }
+
+    public void delUser(int userid) {
+        userMapper.delUserById(userid);
+    }
 }

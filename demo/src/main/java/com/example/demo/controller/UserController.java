@@ -51,4 +51,21 @@ public class UserController {
         int type = Integer.parseInt(map.get("type"));
         return userService.modUser(userid, username, password, phone_number, region, onjob, type);
     }
+
+    @PostMapping("/addUser")
+    public User addUser(@RequestParam Map<String, String> map) {
+        String username = map.get("username");
+        String password = map.get("password");
+        String phone_number = map.get("phone_number");
+        String region = map.get("region");
+        int onjob = Integer.parseInt(map.get("onjob"));
+        int type = Integer.parseInt(map.get("type"));
+        return userService.addUser(0, username, password, phone_number, region, onjob, type);
+    }
+
+    @PostMapping("/delUser")
+    public void delUser(@RequestParam Map<String, String> map) {
+        int userid = Integer.parseInt(map.get("userid"));
+        userService.delUser(userid);
+    }
 }
