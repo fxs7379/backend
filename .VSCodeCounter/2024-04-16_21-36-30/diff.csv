@@ -1,0 +1,10 @@
+"filename", "language", "Java", "comment", "blank", "total"
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/Getmapping.java", "Java", 3, 0, 3, 6
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/SubmitController.java", "Java", 26, 0, 7, 33
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/TagController.java", "Java", 18, 0, 2, 20
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/Submit.java", "Java", 13, 0, 3, 16
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/TagAndPicture.java", "Java", 12, 0, 4, 16
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/mapper/SubmitMapper.java", "Java", 22, 0, 10, 32
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/SubmitService.java", "Java", 28, 0, 7, 35
+"/home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/TagService.java", "Java", 21, 0, 4, 25
+"Total", "-", 143, 0, 40, 183
