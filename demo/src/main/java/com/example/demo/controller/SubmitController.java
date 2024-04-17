@@ -18,8 +18,8 @@ public class SubmitController {
 
     @PostMapping("/addSubmit")
     public Submit addSubmit(@RequestParam Map<String, String> map) {
+        String sub_time = String.valueOf(System.currentTimeMillis());
         String sub_state = map.get("sub_state");
-        String sub_time = map.get("sub_time");
         int tagid = Integer.parseInt(map.get("tagid"));
         return submitService.addSubmit(sub_state, sub_time, tagid);
     }

@@ -12,13 +12,13 @@ import com.example.demo.entity.Tag;
 
 @Mapper
 public interface TagMapper {
-    @Insert("insert into tag (tagname, userid, region) values (#{tagname}, #{userid}, #{region})")
+    @Insert("insert into tag (tagname, userid, region, result) values (#{tagname}, #{userid}, #{region}, #{result})")
     void addTag(Tag tag);
 
     @Delete("delete from tag where tagid=#{tagid}")
     void delTag(int tagid);
 
-    @Update("update tag set tagname=#{tagname}, userid=#{userid}, region=#{region} where tagid=#{tagid}")
+    @Update("update tag set tagname=#{tagname}, userid=#{userid}, region=#{region}, result=#{result} where tagid=#{tagid}")
     void modTag(Tag tag);
 
     @Select("select * from tag")

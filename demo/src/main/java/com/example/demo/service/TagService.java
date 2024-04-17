@@ -25,7 +25,7 @@ public class TagService {
         if (oldTag != null) {
             return null;
         }
-        Tag tag = new Tag(0, tagname, userid, region);
+        Tag tag = new Tag(0, tagname, userid, region, "");
         tagMapper.addTag(tag);
         int tagid = tagMapper.getLastInsert();
         tag.setTagid(tagid);
@@ -46,5 +46,11 @@ public class TagService {
 
     public int getTagCountByUserid(int userid) {
         return tagMapper.getTagByUserid(userid).size();
+    }
+
+    public Tag modTag(int tagid, String tagname, int userid, String region, String result) {
+        Tag tag = new Tag(tagid, tagname, userid, region, result);
+        tagMapper.modTag(tag);
+        return tag;
     }
 }

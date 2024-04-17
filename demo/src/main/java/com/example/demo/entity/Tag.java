@@ -12,4 +12,5 @@ public class Tag {
     String tagname;
     int userid;
     String region;
+    String result;
 }

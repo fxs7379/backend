@@ -42,4 +42,14 @@ public class TagController {
         int userid = Integer.parseInt(map.get("userid"));
         return tagService.getTagCountByUserid(userid);
     }
+
+    @PostMapping("/modTag")
+    public Tag modTag(@RequestParam Map<String, String> map) {
+        int tagid = Integer.parseInt(map.get("tagid"));
+        String tagname = map.get("tagname");
+        int userid = Integer.parseInt(map.get("userid"));
+        String region = map.get("region");
+        String result = map.get("result");
+        return tagService.modTag(tagid, tagname, userid, region, result);
+    }
 }
