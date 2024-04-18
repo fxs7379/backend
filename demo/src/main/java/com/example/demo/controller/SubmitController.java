@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Submit;
+import com.example.demo.entity.SubmitAndTagAndUserAndPicture;
 import com.example.demo.service.SubmitService;
 
 @RestController
@@ -28,5 +30,32 @@ public class SubmitController {
     public Submit getSubmitByTagid(@RequestParam Map<String, String> map) {
         int tagid = Integer.parseInt(map.get("tagid"));
         return submitService.getSubmitByTagid(tagid);
+    }
+
+    @GetMapping("/getAllSubmitAndTagAndUserAndPicture")
+    public List<SubmitAndTagAndUserAndPicture> getAllSubmitAndTagAndUserAndPicture(
+            @RequestParam Map<String, String> map) {
+        int count = Integer.parseInt(map.get("count"));
+        int page = Integer.parseInt(map.get("page"));
+        List<SubmitAndTagAndUserAndPicture> submitAndTagAndUserAndPicture = submitService
+                .getAllSubmitAndTagAndUserAndPicture();
+        int start = (page - 1) * count;
+        int end = page * count > submitAndTagAndUserAndPicture.size() ? submitAndTagAndUserAndPicture.size()
+                : page * count;
+        return submitAndTagAndUserAndPicture.subList(start, end);
+    }
+
+    @GetMapping("/getSubmitCount")
+    public int getSubmitCount() {
+        return submitService.getSubmitCount();
+    }
+
+    @PostMapping("/modSubmit")
+    public Submit modSubmit(@RequestParam Map<String, String> map) {
+        int submitid = Integer.parseInt(map.get("submitid"));
+        String sub_state = map.get("sub_state");
+        String sub_time = map.get("sub_time");
+        int tagid = Integer.parseInt(map.get("tagid"));
+        return submitService.modSubmit(submitid, sub_state, sub_time, tagid);
     }
 }

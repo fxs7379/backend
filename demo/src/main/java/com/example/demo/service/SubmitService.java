@@ -1,11 +1,20 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Picture;
 import com.example.demo.entity.Submit;
+import com.example.demo.entity.SubmitAndTagAndUserAndPicture;
+import com.example.demo.entity.Tag;
+import com.example.demo.entity.User;
+import com.example.demo.mapper.PictureMapper;
 import com.example.demo.mapper.SubmitMapper;
 import com.example.demo.mapper.TagMapper;
+import com.example.demo.mapper.UserMapper;
 
 @Service
 public class SubmitService {
@@ -14,6 +23,12 @@ public class SubmitService {
 
     @Autowired
     TagMapper tagMapper;
+
+    @Autowired
+    PictureMapper pictureMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     public Submit addSubmit(String sub_state, String sub_time, int tagid) {
         Submit oldSubmit = submitMapper.getSubmitByTagid(tagid);
@@ -32,5 +47,26 @@ public class SubmitService {
         return submit;
     }
 
-    // public List<Submit> 
+    public List<SubmitAndTagAndUserAndPicture> getAllSubmitAndTagAndUserAndPicture() {
+        List<SubmitAndTagAndUserAndPicture> submitAndTagAndUserAndPicture = new ArrayList<>();
+        List<Submit> submitList = submitMapper.getAllSubmit();
+        for (int i = 0; i < submitList.size(); i++) {
+            Submit submit = submitList.get(i);
+            Tag tag = tagMapper.getTagById(submit.getTagid());
+            User user = userMapper.findUserById(tag.getUserid());
+            List<Picture> pictureList = pictureMapper.getPictureByTagid(tag.getTagid());
+            submitAndTagAndUserAndPicture.add(new SubmitAndTagAndUserAndPicture(submit, tag, user, pictureList));
+        }
+        return submitAndTagAndUserAndPicture;
+    }
+
+    public int getSubmitCount() {
+        return submitMapper.getAllSubmit().size();
+    }
+
+    public Submit modSubmit(int submitid, String sub_state, String sub_time, int tagid) {
+        Submit submit = new Submit(submitid, sub_state, sub_time, tagid);
+        submitMapper.modSubmit(submit);
+        return submit;
+    }
 }

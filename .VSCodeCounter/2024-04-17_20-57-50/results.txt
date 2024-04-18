@@ -1,0 +1,66 @@
+Date : 2024-04-17 20:57:50
+Directory : /home/mdd/文档/fxs毕设/backend/demo/src
+Total : 24 files,  616 codes, 0 comments, 169 blanks, all 785 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         23 |        610 |          0 |        166 |        776 |
+| Java Properties |          1 |          6 |          0 |          3 |          9 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                        |         24 |        616 |          0 |        169 |        785 |
+| main                                                                                                     |         23 |        607 |          0 |        164 |        771 |
+| main/java                                                                                                |         22 |        601 |          0 |        161 |        762 |
+| main/java/com                                                                                            |         22 |        601 |          0 |        161 |        762 |
+| main/java/com/example                                                                                    |         22 |        601 |          0 |        161 |        762 |
+| main/java/com/example/demo                                                                               |         22 |        601 |          0 |        161 |        762 |
+| main/java/com/example/demo (Files)                                                                       |          1 |          9 |          0 |          5 |         14 |
+| main/java/com/example/demo/controller                                                                    |          6 |        198 |          0 |         45 |        243 |
+| main/java/com/example/demo/entity                                                                        |          6 |         81 |          0 |         21 |        102 |
+| main/java/com/example/demo/mapper                                                                        |          4 |         98 |          0 |         44 |        142 |
+| main/java/com/example/demo/service                                                                       |          4 |        194 |          0 |         43 |        237 |
+| main/java/com/example/demo/util                                                                          |          1 |         21 |          0 |          3 |         24 |
+| main/resources                                                                                           |          1 |          6 |          0 |          3 |          9 |
+| test                                                                                                     |          1 |          9 |          0 |          5 |         14 |
+| test/java                                                                                                |          1 |          9 |          0 |          5 |         14 |
+| test/java/com                                                                                            |          1 |          9 |          0 |          5 |         14 |
+| test/java/com/example                                                                                    |          1 |          9 |          0 |          5 |         14 |
+| test/java/com/example/demo                                                                               |          1 |          9 |          0 |          5 |         14 |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                 | language        | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/DemoApplication.java                      | Java            |          9 |          0 |          5 |         14 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/DemoController.java            | Java            |         10 |          0 |          5 |         15 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/FileController.java            | Java            |         26 |          0 |          6 |         32 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/Getmapping.java                | Java            |          3 |          0 |          3 |          6 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/SubmitController.java          | Java            |         52 |          0 |         10 |         62 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/TagController.java             | Java            |         47 |          0 |          9 |         56 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/controller/UserController.java            | Java            |         60 |          0 |         12 |         72 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/Picture.java                       | Java            |         12 |          0 |          3 |         15 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/Submit.java                        | Java            |         13 |          0 |          3 |         16 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/SubmitAndTagAndUserAndPicture.java | Java            |         14 |          0 |          4 |         18 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/Tag.java                           | Java            |         14 |          0 |          3 |         17 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/TagAndPicture.java                 | Java            |         12 |          0 |          4 |         16 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/entity/User.java                          | Java            |         16 |          0 |          4 |         20 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/mapper/PictureMapper.java                 | Java            |         20 |          0 |          9 |         29 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/mapper/SubmitMapper.java                  | Java            |         22 |          0 |         10 |         32 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/mapper/TagMapper.java                     | Java            |         27 |          0 |         12 |         39 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/mapper/UserMapper.java                    | Java            |         29 |          0 |         13 |         42 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/FileService.java                  | Java            |         44 |          0 |          9 |         53 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/SubmitService.java                | Java            |         60 |          0 |         13 |         73 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/TagService.java                   | Java            |         47 |          0 |         10 |         57 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/service/UserService.java                  | Java            |         43 |          0 |         11 |         54 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/java/com/example/demo/util/Sha256.java                          | Java            |         21 |          0 |          3 |         24 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/main/resources/application.properties                                | Java Properties |          6 |          0 |          3 |          9 |
+| /home/mdd/文档/fxs毕设/backend/demo/src/test/java/com/example/demo/DemoApplicationTests.java                 | Java            |          9 |          0 |          5 |         14 |
+| Total                                                                                                    |                 |        616 |          0 |        169 |        785 |
++----------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
