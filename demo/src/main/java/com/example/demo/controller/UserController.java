@@ -68,4 +68,10 @@ public class UserController {
         int userid = Integer.parseInt(map.get("userid"));
         userService.delUser(userid);
     }
+
+    @GetMapping("/getUserById")
+    public User getUserById(@RequestParam Map<String, String> map) {
+        int userid = Integer.parseInt(map.get("userid"));
+        return userService.getUserById(userid);
+    }
 }

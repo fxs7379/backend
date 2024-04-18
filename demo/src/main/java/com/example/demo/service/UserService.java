@@ -24,6 +24,10 @@ public class UserService {
         return user;
     }
 
+    public User getUserById(int userid) {
+        return userMapper.findUserById(userid);
+    }
+
     public User modUser(int userid, String username, String password, String phone_number, String region, int onjob,
             int type) {
         User user = new User(userid, username, password, phone_number, region, onjob, type);
