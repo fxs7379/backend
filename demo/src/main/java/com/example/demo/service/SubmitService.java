@@ -64,6 +64,36 @@ public class SubmitService {
         return submitMapper.getAllSubmit().size();
     }
 
+    public List<SubmitAndTagAndUserAndPicture> getSubmitAndTagAndUserAndPictureByUserid(int userid) {
+        List<SubmitAndTagAndUserAndPicture> submitAndTagAndUserAndPictureList = new ArrayList<>();
+        List<Tag> tagList = tagMapper.getTagByUserid(userid);
+        for (int i = 0; i < tagList.size(); i++) {
+            Tag tag = tagList.get(i);
+            Submit submit = submitMapper.getSubmitByTagid(tag.getTagid());
+            if (submit == null) {
+                continue;
+            }
+            List<Picture> pictureList = pictureMapper.getPictureByTagid(tag.getTagid());
+            User user = userMapper.findUserById(tag.getUserid());
+            submitAndTagAndUserAndPictureList.add(new SubmitAndTagAndUserAndPicture(submit, tag, user, pictureList));
+        }
+        return submitAndTagAndUserAndPictureList;
+    }
+
+    public int getSubmitCountByUserid(int userid) {
+        int count = 0;
+        List<Tag> tagList = tagMapper.getTagByUserid(userid);
+        for (int i = 0; i < tagList.size(); i++) {
+            Tag tag = tagList.get(i);
+            Submit submit = submitMapper.getSubmitByTagid(tag.getTagid());
+            if (submit == null) {
+                continue;
+            }
+            count++;
+        }
+        return count;
+    }
+
     public Submit modSubmit(int submitid, String sub_state, String sub_time, int tagid) {
         Submit submit = new Submit(submitid, sub_state, sub_time, tagid);
         submitMapper.modSubmit(submit);

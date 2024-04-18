@@ -50,6 +50,26 @@ public class SubmitController {
         return submitService.getSubmitCount();
     }
 
+    @GetMapping("/getSubmitAndTagAndUserAndPictureByUserid")
+    public List<SubmitAndTagAndUserAndPicture> getSubmitAndTagAndUserAndPictureByUserid(
+            @RequestParam Map<String, String> map) {
+        int count = Integer.parseInt(map.get("count"));
+        int page = Integer.parseInt(map.get("page"));
+        int userid = Integer.parseInt(map.get("userid"));
+        List<SubmitAndTagAndUserAndPicture> submitAndTagAndUserAndPicture = submitService
+                .getSubmitAndTagAndUserAndPictureByUserid(userid);
+        int start = (page - 1) * count;
+        int end = page * count > submitAndTagAndUserAndPicture.size() ? submitAndTagAndUserAndPicture.size()
+                : page * count;
+        return submitAndTagAndUserAndPicture.subList(start, end);
+    }
+
+    @GetMapping("/getSubmitCountByUserid")
+    public int getSubmitCountByUserid(@RequestParam Map<String, String> map) {
+        int userid = Integer.parseInt(map.get("userid"));
+        return submitService.getSubmitCountByUserid(userid);
+    }
+
     @PostMapping("/modSubmit")
     public Submit modSubmit(@RequestParam Map<String, String> map) {
         int submitid = Integer.parseInt(map.get("submitid"));
