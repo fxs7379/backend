@@ -43,6 +43,12 @@ public class TagController {
         return tagService.getTagCountByUserid(userid);
     }
 
+    @GetMapping("/getTagAndPictureById")
+    public TagAndPicture getTagAndPictureById(@RequestParam Map<String, String> map) {
+        int tagid = Integer.parseInt(map.get("tagid"));
+        return tagService.getTagAndPictureById(tagid);
+    }
+
     @PostMapping("/modTag")
     public Tag modTag(@RequestParam Map<String, String> map) {
         int tagid = Integer.parseInt(map.get("tagid"));

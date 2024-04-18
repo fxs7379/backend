@@ -53,4 +53,10 @@ public class TagService {
         tagMapper.modTag(tag);
         return tag;
     }
+
+    public TagAndPicture getTagAndPictureById(int tagid) {
+        Tag tag = tagMapper.getTagById(tagid);
+        List<Picture> pictureList = pictureMapper.getPictureByTagid(tagid);
+        return new TagAndPicture(tag, pictureList);
+    }
 }
