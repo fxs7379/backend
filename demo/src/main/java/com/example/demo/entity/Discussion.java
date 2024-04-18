@@ -12,4 +12,5 @@ public class Discussion {
     String content;
     int userid;
     int tagid;
+    String time;
 }

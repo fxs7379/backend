@@ -31,7 +31,8 @@ public class DiscussionService {
     private PictureMapper pictureMapper;
 
     public Discussion addDiscussion(String content, int userid, int tagid) {
-        Discussion discussion = new Discussion(0, content, userid, tagid);
+        String time = String.valueOf(System.currentTimeMillis());
+        Discussion discussion = new Discussion(0, content, userid, tagid, time);
         discussionMapper.addDiscussion(discussion);
         int discussionId = discussionMapper.getLastInsert();
         discussion.setDiscussionid(discussionId);
@@ -42,8 +43,8 @@ public class DiscussionService {
         discussionMapper.delDiscussionById(discussionId);
     }
 
-    public void modDiscussion(int discussionId, String content, int userid, int tagid) {
-        Discussion discussion = new Discussion(discussionId, content, userid, tagid);
+    public void modDiscussion(int discussionId, String content, int userid, int tagid, String time) {
+        Discussion discussion = new Discussion(discussionId, content, userid, tagid, time);
         discussionMapper.modDiscussion(discussion);
     }
 
