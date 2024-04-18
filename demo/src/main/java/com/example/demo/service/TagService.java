@@ -59,4 +59,20 @@ public class TagService {
         List<Picture> pictureList = pictureMapper.getPictureByTagid(tagid);
         return new TagAndPicture(tag, pictureList);
     }
+
+    public List<TagAndPicture> getAllTagAndPicture() {
+        List<Tag> tagList = tagMapper.getAllTag();
+        List<TagAndPicture> tagAndPictureList = new ArrayList<>();
+        for (int i = 0; i < tagList.size(); i++) {
+            Tag tag = tagList.get(i);
+            List<Picture> pictureList = pictureMapper.getPictureByTagid(tag.getTagid());
+            TagAndPicture tagAndPicture = new TagAndPicture(tag, pictureList);
+            tagAndPictureList.add(tagAndPicture);
+        }
+        return tagAndPictureList;
+    }
+
+    public int getAllTagCount() {
+        return tagMapper.getAllTag().size();
+    }
 }
