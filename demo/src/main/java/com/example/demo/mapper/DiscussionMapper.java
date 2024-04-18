@@ -12,7 +12,7 @@ import com.example.demo.entity.Discussion;
 
 @Mapper
 public interface DiscussionMapper {
-    @Insert("insert into discussion (content, userid, tagid) values (#{content}, #{userid}, #{tagid})")
+    @Insert("insert into discussion (content, userid, tagid, time) values (#{content}, #{userid}, #{tagid}, #{time})")
     void addDiscussion(Discussion discussion);
 
     @Select("select * from discussion")
