@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Discussion;
+import com.example.demo.entity.DiscussionAndTagAndPictureAndUser;
 import com.example.demo.service.DiscussionService;
 
 @RestController
@@ -28,5 +29,10 @@ public class DiscussionController {
     @GetMapping("/getAllDiscussion")
     public List<Discussion> getAllDiscussion() {
         return discussionService.getAllDiscussion();
+    }
+
+    @GetMapping("/getAllDiscussionAndTagAndPictureAndUser")
+    public List<DiscussionAndTagAndPictureAndUser> getAllDiscussionAndTagAndPictureAndUser() {
+        return discussionService.getAllDiscussionAndTagAndPictureAndUser().reversed();
     }
 }
