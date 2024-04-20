@@ -73,4 +73,10 @@ public class TagController {
         String result = map.get("result");
         return tagService.modTag(tagid, tagname, userid, region, result);
     }
+
+    @GetMapping("/classifyTag")
+    public String classifyTag(@RequestParam Map<String, String> map) throws Exception {
+        int tagid = Integer.parseInt(map.get("tagid"));
+        return tagService.classifyTag(tagid);
+    }
 }
