@@ -13,4 +13,9 @@ public class Tag {
     int userid;
     String region;
     String result;
+    String tem;
+    String hum;
+    String win_dir;
+    String win_speed;
+    String pressure;
 }

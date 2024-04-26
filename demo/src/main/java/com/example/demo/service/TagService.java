@@ -1,20 +1,33 @@
 package com.example.demo.service;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entity.City;
 import com.example.demo.entity.Picture;
 import com.example.demo.entity.Prediction;
 import com.example.demo.entity.Tag;
 import com.example.demo.entity.TagAndPicture;
+import com.example.demo.entity.WeatherApi.WeatherNow;
+import com.example.demo.entity.WeatherApi.WeatherResponse;
+import com.example.demo.mapper.CityMapper;
 import com.example.demo.mapper.PictureMapper;
 import com.example.demo.mapper.TagMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
+
+import io.micrometer.core.instrument.util.IOUtils;
 
 @Service
 public class TagService {
@@ -24,6 +37,15 @@ public class TagService {
     @Autowired
     PictureMapper pictureMapper;
 
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Autowired
+    CityMapper cityMapper;
+
+    @Autowired
+    ObjectMapper objectMapper;
+
     private static String filePath = "/home/mdd/文档/fxs毕设/图片/";
 
     public Tag addTag(String tagname, int userid, String region) {
@@ -31,7 +53,7 @@ public class TagService {
         if (oldTag != null) {
             return null;
         }
-        Tag tag = new Tag(0, tagname, userid, region, "");
+        Tag tag = new Tag(0, tagname, userid, region, "", "", "", "", "", "");
         tagMapper.addTag(tag);
         int tagid = tagMapper.getLastInsert();
         tag.setTagid(tagid);
@@ -54,8 +76,9 @@ public class TagService {
         return tagMapper.getTagByUserid(userid).size();
     }
 
-    public Tag modTag(int tagid, String tagname, int userid, String region, String result) {
-        Tag tag = new Tag(tagid, tagname, userid, region, result);
+    public Tag modTag(int tagid, String tagname, int userid, String region, String result, String tem, String hum,
+            String win_dir, String win_speed, String pressure) {
+        Tag tag = new Tag(tagid, tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure);
         tagMapper.modTag(tag);
         return tag;
     }
@@ -110,5 +133,27 @@ public class TagService {
         } else {
             return "晴天";
         }
+    }
+
+    public Tag getWeather(int tagid) throws Exception {
+        String key = System.getenv("WEATHER_API_KEY");
+        Tag tag = tagMapper.getTagById(tagid);
+        City city = cityMapper.getCityByName(tag.getRegion());
+        String url = "https://devapi.qweather.com/v7/weather/now?";
+        url += "location=" + city.getLocation_id();
+        url += "&key=" + key;
+        // 巨坑！！！这玩意返回的数据是gzip压缩的，花了好长时间才整出来这解压办法！！！
+        byte[] response = restTemplate.getForEntity(url, byte[].class).getBody();
+        GZIPInputStream gzipStream = new GZIPInputStream(new ByteArrayInputStream(response));
+        String json = IOUtils.toString(gzipStream, StandardCharsets.UTF_8);
+        WeatherResponse weatherResponse = new ObjectMapper().readValue(json,
+                WeatherResponse.class);
+        WeatherNow now = weatherResponse.getNow();
+        tag.setTem(now.getTemp() + "°C");
+        tag.setHum(now.getHumidity() + "%");
+        tag.setWin_dir(now.getWindDir());
+        tag.setWin_speed(now.getWindScale() + "级");
+        tag.setPressure(now.getPressure() + "百帕");
+        return tag;
     }
 }

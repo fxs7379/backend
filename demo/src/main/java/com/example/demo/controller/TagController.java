@@ -71,12 +71,23 @@ public class TagController {
         int userid = Integer.parseInt(map.get("userid"));
         String region = map.get("region");
         String result = map.get("result");
-        return tagService.modTag(tagid, tagname, userid, region, result);
+        String tem = map.get("tem");
+        String hum = map.get("hum");
+        String win_dir = map.get("win_dir");
+        String win_speed = map.get("win_speed");
+        String pressure = map.get("pressure");
+        return tagService.modTag(tagid, tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure);
     }
 
     @GetMapping("/classifyTag")
     public String classifyTag(@RequestParam Map<String, String> map) throws Exception {
         int tagid = Integer.parseInt(map.get("tagid"));
         return tagService.classifyTag(tagid);
+    }
+
+    @GetMapping("/getWeather")
+    public Tag getWeather(@RequestParam Map<String, String> map) throws Exception {
+        int tagid = Integer.parseInt(map.get("tagid"));
+        return tagService.getWeather(tagid);
     }
 }
