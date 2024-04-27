@@ -74,4 +74,9 @@ public class UserController {
         int userid = Integer.parseInt(map.get("userid"));
         return userService.getUserById(userid);
     }
+
+    @GetMapping("/getAllRegion")
+    public List<String> getAllRegion() {
+        return userService.getAllRegion();
+    }
 }

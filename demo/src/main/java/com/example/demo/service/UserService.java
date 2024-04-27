@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +56,14 @@ public class UserService {
 
     public void delUser(int userid) {
         userMapper.delUserById(userid);
+    }
+
+    public List<String> getAllRegion() {
+        List<User> users = userMapper.findAllUser();
+        Set<String> regionSet = new HashSet<>();
+        for (int i = 0; i < users.size(); i++) {
+            regionSet.add(users.get(i).getRegion());
+        }
+        return new ArrayList<String>(regionSet);
     }
 }

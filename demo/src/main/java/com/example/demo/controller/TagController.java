@@ -81,8 +81,6 @@ public class TagController {
         return tagService.getTagAndPictureById(tagid);
     }
 
-    
-
     @PostMapping("/modTag")
     public Tag modTag(@RequestParam Map<String, String> map) {
         int tagid = Integer.parseInt(map.get("tagid"));
