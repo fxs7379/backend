@@ -12,7 +12,7 @@ import com.example.demo.entity.Tag;
 
 @Mapper
 public interface TagMapper {
-    @Insert("insert into tag (tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure) values (#{tagname}, #{userid}, #{region}, #{result}, #{tem}, #{hum}, #{win_dir}, #{win_speed}, #{pressure)")
+    @Insert("insert into tag (tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure, time) values (#{tagname}, #{userid}, #{region}, #{result}, #{tem}, #{hum}, #{win_dir}, #{win_speed}, #{pressure}, #{time})")
     void addTag(Tag tag);
 
     @Delete("delete from tag where tagid=#{tagid}")
@@ -32,6 +32,9 @@ public interface TagMapper {
 
     @Select("select * from tag where userid=#{userid}")
     List<Tag> getTagByUserid(int userid);
+
+    @Select("select * from tag where region=#{region}")
+    List<Tag> getTagByRegion(String region);
 
     @Select("select last_insert_id()")
     int getLastInsert();

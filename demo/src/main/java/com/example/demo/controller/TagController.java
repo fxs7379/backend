@@ -43,6 +43,23 @@ public class TagController {
         return tagService.getTagCountByUserid(userid);
     }
 
+    @GetMapping("/getTagAndPictureByRegion")
+    public List<TagAndPicture> getTagAndPictureByRegion(@RequestParam Map<String, String> map) {
+        String region = map.get("region");
+        int count = Integer.parseInt(map.get("count"));
+        int page = Integer.parseInt(map.get("page"));
+        List<TagAndPicture> tagAndPictureList = tagService.getTagAndPictureByRegion(region);
+        int start = (page - 1) * count;
+        int end = page * count > tagAndPictureList.size() ? tagAndPictureList.size() : page * count;
+        return tagAndPictureList.subList(start, end);
+    }
+
+    @GetMapping("/getTagCountByRegion")
+    public int getTagCountByRegion(@RequestParam Map<String, String> map) {
+        String region = map.get("region");
+        return tagService.getTagCountByRegion(region);
+    }
+
     @GetMapping("/getAllTagCount")
     public int getAllTagCount() {
         return tagService.getAllTagCount();
@@ -63,6 +80,8 @@ public class TagController {
         int tagid = Integer.parseInt(map.get("tagid"));
         return tagService.getTagAndPictureById(tagid);
     }
+
+    
 
     @PostMapping("/modTag")
     public Tag modTag(@RequestParam Map<String, String> map) {

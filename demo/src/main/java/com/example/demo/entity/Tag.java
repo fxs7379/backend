@@ -18,4 +18,5 @@ public class Tag {
     String win_dir;
     String win_speed;
     String pressure;
+    String time;
 }

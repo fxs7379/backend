@@ -2,15 +2,12 @@ package com.example.demo.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -53,7 +50,8 @@ public class TagService {
         if (oldTag != null) {
             return null;
         }
-        Tag tag = new Tag(0, tagname, userid, region, "", "", "", "", "", "");
+        String time = String.valueOf(System.currentTimeMillis());
+        Tag tag = new Tag(0, tagname, userid, region, "", "", "", "", "", "", time);
         tagMapper.addTag(tag);
         int tagid = tagMapper.getLastInsert();
         tag.setTagid(tagid);
@@ -76,9 +74,25 @@ public class TagService {
         return tagMapper.getTagByUserid(userid).size();
     }
 
+    public List<TagAndPicture> getTagAndPictureByRegion(String region) {
+        List<Tag> tagList = tagMapper.getTagByRegion(region);
+        List<TagAndPicture> tagAndPictureList = new ArrayList<>();
+        for (int i = 0; i < tagList.size(); i++) {
+            Tag tag = tagList.get(i);
+            List<Picture> pictureList = pictureMapper.getPictureByTagid(tag.getTagid());
+            TagAndPicture tagAndPicture = new TagAndPicture(tag, pictureList);
+            tagAndPictureList.add(tagAndPicture);
+        }
+        return tagAndPictureList;
+    }
+
+    public int getTagCountByRegion(String region) {
+        return tagMapper.getTagByRegion(region).size();
+    }
+
     public Tag modTag(int tagid, String tagname, int userid, String region, String result, String tem, String hum,
             String win_dir, String win_speed, String pressure) {
-        Tag tag = new Tag(tagid, tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure);
+        Tag tag = new Tag(tagid, tagname, userid, region, result, tem, hum, win_dir, win_speed, pressure, "");
         tagMapper.modTag(tag);
         return tag;
     }
