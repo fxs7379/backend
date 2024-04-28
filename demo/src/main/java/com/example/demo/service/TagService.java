@@ -119,7 +119,8 @@ public class TagService {
         return tagMapper.getAllTag().size();
     }
 
-    public String classifyTag(int tagid) throws Exception {
+    public String classifyTag(int tagid, String module) throws Exception {
+        String url = "http://127.0.0.1:8082/predict_" + module;
         List<Picture> pictureList = pictureMapper.getPictureByTagid(tagid);
         ObjectMapper mapper = new ObjectMapper();
         Unirest.setTimeouts(0, 0);
@@ -127,7 +128,7 @@ public class TagService {
         int maxId = 0;
         for (int i = 0; i < pictureList.size(); i++) {
             Picture picture = pictureList.get(i);
-            com.mashape.unirest.http.HttpResponse<String> response = Unirest.post("http://127.0.0.1:8082/predict")
+            com.mashape.unirest.http.HttpResponse<String> response = Unirest.post(url)
                     .field("image", new File(filePath + picture.getPicture_path()))
                     .asString();
             String jsonString = response.getBody();

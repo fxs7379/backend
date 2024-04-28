@@ -99,7 +99,8 @@ public class TagController {
     @GetMapping("/classifyTag")
     public String classifyTag(@RequestParam Map<String, String> map) throws Exception {
         int tagid = Integer.parseInt(map.get("tagid"));
-        return tagService.classifyTag(tagid);
+        String module = map.get("module");
+        return tagService.classifyTag(tagid, module);
     }
 
     @GetMapping("/getWeather")
